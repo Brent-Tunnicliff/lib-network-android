@@ -1,4 +1,4 @@
-package dev.tunnicliff.replace_me
+package dev.tunnicliff.network
 
 class Example {
     companion object {

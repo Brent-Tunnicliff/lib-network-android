@@ -1,4 +1,4 @@
-package dev.tunnicliff.replace_me.demo
+package dev.tunnicliff.network.demo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,8 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import dev.tunnicliff.replace_me.Example
-import dev.tunnicliff.replace_me.demo.ui.theme.DemoTheme
+import dev.tunnicliff.network.demo.ui.theme.DemoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +32,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Message(modifier: Modifier = Modifier) {
     Text(
-        text = "Value: ${Example.VALUE}",
+        text = "Value: Hello World!",
         modifier = modifier
     )
 }
