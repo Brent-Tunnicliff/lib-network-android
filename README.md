@@ -1,9 +1,8 @@
-# template-lib-android
+# lib-network-android
 
-Template as a base for all my Android libraries.
+Library for handling network API calls.
+
 Project contains the library `lib/` and a demo app `app/`.
-
-After generating the repository find all cases of `replace_me` and rename them.
 
 ## Disclaimer
 

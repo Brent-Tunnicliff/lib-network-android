@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.tunnicliff.replace_me"
+    namespace = "dev.tunnicliff.network"
     compileSdk = 34
 
     defaultConfig {
@@ -39,7 +39,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "dev.tunnicliff"
-            artifactId = "replace_me"
+            artifactId = "network"
             version = "0.0.0"
 
             afterEvaluate {
@@ -51,11 +51,9 @@ publishing {
 
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-
-    // Example of github lib.
-    // implementation("com.github.Brent-Tunnicliff:temp_poc:0.0.4")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("io.ktor:ktor-client-core:2.3.9")
+    implementation("io.ktor:ktor-client-cio:2.3.9")
 
     testImplementation("junit:junit:4.13.2")
 
