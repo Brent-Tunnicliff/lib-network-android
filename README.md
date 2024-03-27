@@ -1,5 +1,7 @@
 # lib-network-android
 
+[![](https://jitpack.io/v/Brent-Tunnicliff/lib-network-android.svg)](https://jitpack.io/#Brent-Tunnicliff/lib-network-android)
+
 Library for handling network API calls.
 
 Project contains the library `lib/` and a demo app `app/`.
