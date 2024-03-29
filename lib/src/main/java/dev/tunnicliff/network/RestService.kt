@@ -14,6 +14,8 @@ interface RestService {
      *
      * @param Body the HTTP response body type.
      * @param path the path for the request.
+     * @param headers the headers to be sent with the request.
+     * @param parameters the query parameters to be send with the request.
      * @param ofType the HTTP response body type for mapping. Should be "Body::class".
      * @param progressListener (optional) listener for getting download progress updates.
      * "progressInBytes" is how many bytes has been downloaded so far.
@@ -23,6 +25,7 @@ interface RestService {
     @Throws(HttpException::class)
     suspend fun <Body> get(
         path: String,
+        headers: Map<String, String> = emptyMap(),
         parameters: Map<String, String> = emptyMap(),
         ofType: KClass<*>,
         progressListener: (progressInBytes: Long, totalSizeInBytes: Long?) -> Unit = { _, _ -> }
