@@ -7,6 +7,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.onDownload
 import io.ktor.client.request.get
+import io.ktor.client.request.parameter
 import io.ktor.http.set
 import java.net.URL
 import java.util.UUID
@@ -27,6 +28,7 @@ internal class KtorRestService(
     @Throws(HttpException::class)
     override suspend fun <Body> get(
         path: String,
+        parameters: Map<String, String>,
         ofType: KClass<*>,
         progressListener: (progressInBytes: Long, totalSizeInBytes: Long?) -> Unit
     ): Body {
@@ -35,6 +37,10 @@ internal class KtorRestService(
         try {
             val response = client.get(baseUrl) {
                 url.set(path = path)
+                parameters.forEach {
+                    parameter(key = it.key, value = it.value)
+                }
+
                 onDownload { bytesSentTotal, contentLength ->
                     logger.info(
                         TAG,

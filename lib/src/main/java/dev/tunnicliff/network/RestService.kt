@@ -30,6 +30,7 @@ interface RestService {
     @Throws(HttpException::class)
     suspend fun <Body> get(
         path: String,
+        parameters: Map<String, String> = emptyMap(),
         ofType: KClass<*>,
         progressListener: (progressInBytes: Long, totalSizeInBytes: Long?) -> Unit = { _, _ -> }
     ): Body
