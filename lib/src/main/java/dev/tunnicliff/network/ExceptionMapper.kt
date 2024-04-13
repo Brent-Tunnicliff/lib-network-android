@@ -1,6 +1,6 @@
-package dev.tunnicliff.network.internal
+package dev.tunnicliff.network
 
-internal interface ExceptionMapper {
+interface ExceptionMapper {
     /**
      * Maps common exceptions.
      */

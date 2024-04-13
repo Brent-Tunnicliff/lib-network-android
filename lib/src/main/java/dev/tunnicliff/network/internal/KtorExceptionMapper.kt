@@ -1,5 +1,6 @@
 package dev.tunnicliff.network.internal
 
+import dev.tunnicliff.network.ExceptionMapper
 import dev.tunnicliff.network.HttpException
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.RedirectResponseException

@@ -42,10 +42,7 @@ class AppViewModel(
 
         try {
             latestComicState.emit(
-                restService.get<Comic>(
-                    path = "info.0.json",
-                    ofType = Comic::class
-                )
+                restService.get<Comic>(path = "info.0.json")
             )
         } catch (exception: Throwable) {
             Log.e(TAG, "Getting comic threw error", exception)
