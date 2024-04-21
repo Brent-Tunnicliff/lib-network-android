@@ -8,6 +8,9 @@ import dev.tunnicliff.network.internal.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 import java.net.URL
 
 /**
@@ -45,6 +48,14 @@ class NetworkContainer : Container() {
                 requestTimeoutMillis = CLIENT_TIMEOUT_IN_MILLISECONDS
                 connectTimeoutMillis = CLIENT_TIMEOUT_IN_MILLISECONDS
                 socketTimeoutMillis = CLIENT_TIMEOUT_IN_MILLISECONDS
+            }
+
+            install(ContentNegotiation) {
+                json(Json {
+                    // We do not want to enforce the response body to be a 1-to-1 map of the json.
+                    // If we don't need a field then allow it to be ignored.
+                    ignoreUnknownKeys = true
+                })
             }
         }
     }

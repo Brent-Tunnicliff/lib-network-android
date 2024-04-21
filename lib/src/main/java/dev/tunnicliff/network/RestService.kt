@@ -12,7 +12,7 @@ interface RestService {
     /**
      * Make a HTTP GET network request.
      *
-     * @param Body the HTTP response body type.
+     * @param Body the HTTP response body type. Must conform to `kotlinx.serialization.Serializable`.
      * @param path the path for the request.
      * @param headers the headers to be sent with the request.
      * @param parameters the query parameters to be send with the request.

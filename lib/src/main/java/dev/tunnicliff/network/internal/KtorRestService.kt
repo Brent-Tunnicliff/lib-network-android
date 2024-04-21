@@ -1,6 +1,5 @@
 package dev.tunnicliff.network.internal
 
-import com.google.gson.Gson
 import dev.tunnicliff.network.HttpException
 import dev.tunnicliff.network.RestService
 import io.ktor.client.HttpClient
@@ -9,7 +8,9 @@ import io.ktor.client.plugins.onDownload
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.parameter
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.set
+import io.ktor.util.reflect.TypeInfo
 import java.net.URL
 import java.util.UUID
 import kotlin.reflect.KClass
@@ -59,7 +60,7 @@ internal class KtorRestService(
 
             logger.info(TAG, "$requestId: Mapping response body")
 
-            val result: Body = Gson().fromJson<Body>(response.body<String>(), ofType.java)
+            val result: Body = response.body(ofType)
 
             logger.info(TAG, "$requestId: Request success")
 
@@ -77,5 +78,19 @@ internal class KtorRestService(
     private fun generateRequestId(): String =
         UUID.randomUUID().toString()
 
+    private fun getTypeInfo(ofType: KClass<*>): TypeInfo =
+        TypeInfo(
+            type = ofType,
+            reifiedType = ofType.java
+        )
+
     // endregion
 }
+
+private suspend fun <Body> HttpResponse.body(ofType: KClass<*>): Body =
+    body(
+        TypeInfo(
+            type = ofType,
+            reifiedType = ofType.java
+        )
+    )
