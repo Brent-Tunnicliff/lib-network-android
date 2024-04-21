@@ -52,10 +52,9 @@ publishing {
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("com.github.Brent-Tunnicliff:lib-container-android:1.0.0-beta.1")
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation("io.ktor:ktor-client-core:2.3.9")
     implementation("io.ktor:ktor-client-cio:2.3.9")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.9")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")
 
     testImplementation("junit:junit:4.13.2")
 
