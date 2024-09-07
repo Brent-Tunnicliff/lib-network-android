@@ -1,3 +1,5 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 package dev.tunnicliff.network.demo.ui.theme
 
 import androidx.compose.ui.graphics.Color
