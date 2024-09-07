@@ -72,7 +72,7 @@ dependencies {
     implementation("com.github.Brent-Tunnicliff:lib-container-android:1.0.0-beta.1")
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.code.gson:gson:2.11.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.0")
