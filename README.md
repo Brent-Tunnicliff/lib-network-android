@@ -1,6 +1,6 @@
 # lib-network-android
 
-[![](https://jitpack.io/v/Brent-Tunnicliff/lib-network-android.svg)](https://jitpack.io/#Brent-Tunnicliff/lib-network-android)
+[![](https://jitpack.io/v/Brent-Tunnicliff/lib-network-android.svg)](https://jitpack.io/#Brent-Tunnicliff/lib-network-android) ![Weekly download statistics](https://jitpack.io/v/Brent-Tunnicliff/lib-network-android/week.svg) ![Monthly download statistics](https://jitpack.io/v/Brent-Tunnicliff/lib-network-android/month.svg)
 
 Library for handling network API calls.
 
