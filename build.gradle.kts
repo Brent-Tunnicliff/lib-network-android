@@ -1,7 +1,9 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id("com.android.application") version "8.3.1" apply false
-    id("com.android.library") version "8.3.1" apply false
-    id("maven-publish")
-    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.kotlinAndroid) apply false
+    alias(libs.plugins.serialization) apply false
 }

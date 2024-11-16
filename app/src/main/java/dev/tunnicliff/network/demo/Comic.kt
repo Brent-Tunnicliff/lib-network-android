@@ -1,5 +1,9 @@
-package dev.tunnicliff.network.demo
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
 
+package dev.tunnicliff.network.demo
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Comic(
     val alt: String,
     val day: String,

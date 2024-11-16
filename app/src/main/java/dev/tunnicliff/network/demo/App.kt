@@ -1,3 +1,5 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 package dev.tunnicliff.network.demo
 
 import androidx.compose.foundation.layout.Box
@@ -25,7 +27,7 @@ private val gson = GsonBuilder().setPrettyPrinting().create()
 
 @Composable
 fun App(
-    viewModel: AppViewModel = viewModel()
+    viewModel: AppViewModel = viewModel(factory = AppViewModel.FACTORY)
 ) {
     val errorMessage by viewModel.errorMessage.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()

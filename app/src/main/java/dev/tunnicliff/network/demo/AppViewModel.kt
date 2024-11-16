@@ -1,15 +1,32 @@
+// Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
+
 package dev.tunnicliff.network.demo
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import dev.tunnicliff.network.RestService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.net.URL
 
-class AppViewModel : ViewModel() {
-    private companion object {
-        const val TAG = "AppViewModel"
+class AppViewModel(
+    private val restService: RestService
+) : ViewModel() {
+    companion object {
+        private const val TAG = "AppViewModel"
+
+        val FACTORY: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val appContainer = (this[APPLICATION_KEY] as DemoApplication).container
+                AppViewModel(
+                    restService = appContainer.networkContainer.restService(URL("https://xkcd.com"))
+                )
+            }
+        }
     }
 
     private val errorMessageState = MutableStateFlow<String?>(null)
@@ -20,10 +37,6 @@ class AppViewModel : ViewModel() {
 
     private val latestComicState = MutableStateFlow<Comic?>(null)
     val latestComic = latestComicState.asStateFlow()
-
-    private val restService = RestService
-        .Builder(URL("https://xkcd.com"))
-        .build()
 
     suspend fun getComic() {
         errorMessageState.emit(null)
