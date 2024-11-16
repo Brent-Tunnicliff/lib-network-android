@@ -80,12 +80,6 @@ internal class KtorRestService(
     private fun generateRequestId(): String =
         UUID.randomUUID().toString()
 
-    private fun getTypeInfo(ofType: KClass<*>): TypeInfo =
-        TypeInfo(
-            type = ofType,
-            reifiedType = ofType.java
-        )
-
     // endregion
 }
 
