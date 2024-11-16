@@ -2,6 +2,7 @@
 
 package dev.tunnicliff.network.internal
 
+import dev.tunnicliff.logging.LOG
 import dev.tunnicliff.network.HttpException
 import dev.tunnicliff.network.RestService
 import io.ktor.client.HttpClient
@@ -20,8 +21,7 @@ import kotlin.reflect.KClass
 internal class KtorRestService(
     private val baseUrl: URL,
     private val client: HttpClient,
-    private val exceptionMapper: ExceptionMapper,
-    private val logger: Logger
+    private val exceptionMapper: ExceptionMapper
 ) : RestService {
     private companion object {
         const val TAG = "RestServiceImpl"
@@ -38,7 +38,7 @@ internal class KtorRestService(
         progressListener: (progressInBytes: Long, totalSizeInBytes: Long?) -> Unit
     ): Body {
         val requestId = generateRequestId()
-        logger.info(TAG, "$requestId: Starting get call, baseUrl: $baseUrl, path: $path")
+        LOG.info(TAG, "$requestId: Starting get call, baseUrl: $baseUrl, path: $path")
         try {
             val response = client.get(baseUrl) {
                 url.set(path = path)
@@ -51,7 +51,7 @@ internal class KtorRestService(
                 }
 
                 onDownload { bytesSentTotal, contentLength ->
-                    logger.info(
+                    LOG.info(
                         TAG,
                         "$requestId: Download progress $bytesSentTotal out of $contentLength"
                     )
@@ -60,15 +60,15 @@ internal class KtorRestService(
                 }
             }
 
-            logger.info(TAG, "$requestId: Mapping response body")
+            LOG.info(TAG, "$requestId: Mapping response body")
 
             val result: Body = response.body(ofType)
 
-            logger.info(TAG, "$requestId: Request success")
+            LOG.info(TAG, "$requestId: Request success")
 
             return result
         } catch (exception: Exception) {
-            logger.error(TAG, "$requestId: Request failed", exception)
+            LOG.error(TAG, "$requestId: Request failed", exception)
             throw exceptionMapper.map(exception)
         }
     }

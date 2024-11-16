@@ -14,11 +14,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-
-        maven {
-            // Allows importing libs from GitHub.
-            url = uri("https://jitpack.io")
-        }
+        mavenLocal()
     }
 }
 

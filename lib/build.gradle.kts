@@ -1,14 +1,14 @@
 // Copyright © 2024 Brent Tunnicliff <brent@tunnicliff.dev>
 
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
     id("maven-publish")
-    id("org.jetbrains.kotlin.android")
 }
 
 android {
     namespace = "dev.tunnicliff.network"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 33
@@ -35,32 +35,65 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "dev.tunnicliff"
-            artifactId = "network"
-            version = "0.1.0"
-
-            afterEvaluate {
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
                 from(components["release"])
+                groupId = "dev.tunnicliff"
+                artifactId = "lib-network-android"
+                version = "0.1.0-alpha.8"
+
+                pom {
+                    packaging = "aar"
+                    name.set("lib-network-android")
+                    description.set("lib-network-android: Library for handling network API calls.")
+                    url.set("https://github.com/Brent-Tunnicliff/lib-network-android")
+                    inceptionYear.set("2024")
+
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://opensource.org/licenses/MIT")
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id.set("brent")
+                            name.set("Brent Tunnicliff")
+                            email.set("brent@tunnicliff.dev")
+                        }
+                    }
+
+                    scm {
+                        connection.set("scm:git:https://github.com/Brent-Tunnicliff/lib-network-android.git")
+                        developerConnection.set("scm:git:ssh://git@github.com:Brent-Tunnicliff/lib-network-android.git")
+                        url.set("https://github.com/Brent-Tunnicliff/lib-network-android")
+                    }
+                }
             }
         }
     }
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("com.github.Brent-Tunnicliff:lib-container-android:1.0.0-beta.1")
-    implementation("io.ktor:ktor-client-core:2.3.12")
-    implementation("io.ktor:ktor-client-cio:2.3.12")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.dev.tunnicliff.lib.container.android)
+    implementation(libs.dev.tunnicliff.lib.logging.android)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
 
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.junit)
 
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
 }
