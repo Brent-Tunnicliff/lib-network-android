@@ -24,7 +24,7 @@ internal class KtorRestService(
     private val exceptionMapper: ExceptionMapper
 ) : RestService {
     private companion object {
-        const val TAG = "RestServiceImpl"
+        const val TAG = "KtorRestService"
     }
 
     // region RestService
